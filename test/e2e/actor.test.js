@@ -14,7 +14,7 @@ const request = chai.request(app);
 describe('REST API 3 resource', () => {
     before(() => connection.dropDatabase());
 
-    let newActor = {
+    let brad = {
         name: 'Brad Pitt', 
         difficult: true, 
         age: 53
@@ -23,11 +23,11 @@ describe('REST API 3 resource', () => {
     it('saves an actor', () => {
 
         return request.post('/api/actors')
-            .send(newActor)
+            .send(brad)
             .then( res => {
                 let actor = res.body;
                 assert.isOk(actor._id);
-                assert.deepEqual(actor.name, newActor.name);
+                assert.deepEqual(actor.name, brad.name);
             });
     });
 
@@ -36,7 +36,7 @@ describe('REST API 3 resource', () => {
         let actor = null;
 
         return request.post('/api/actors')
-            .send(newActor)
+            .send(brad)
             .then( res => {
                 actor = res.body;
                 return request.get(`/api/actors/${actor._id}`);
@@ -45,6 +45,27 @@ describe('REST API 3 resource', () => {
                 assert.deepEqual(res.body, actor);
             });
         
+    });
+
+    it('deletes an actor by id', () => {
+        let actor = null;
+        return request.post('/api/actors')
+            .send(brad)
+
+            .then(res => {
+                actor = res.body;
+                return request.delete(`/api/actors/${actor._id}`);
+            })
+            .then(res => {
+                assert.deepEqual(res.body, { removed: true});
+                return request.get(`/api/actors/${actor._id}`);
+            })
+            .then(
+                () => { throw new Error('Unexpected successful response'); },
+                err => {
+                    assert.equal(err.status, 404);
+                }
+            );
     });
 
 });
