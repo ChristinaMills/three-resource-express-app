@@ -47,25 +47,25 @@ describe('REST API 3 resource', () => {
         
     });
 
-    it.skip('deletes an actor by id', () => {
-        let actor = null;
-        return request.post('/api/actors')
-            .send(brad)
+    // it.skip('deletes an actor by id', () => {
+    //     let actor = null;
+    //     return request.post('/api/actors')
+    //         .send(brad)
 
-            .then(res => {
-                actor = res.body;
-                return request.delete(`/api/actors/${actor._id}`);
-            })
-            .then(res => {
-                assert.deepEqual(res.body, { removed: true});
-                return request.get(`/api/actors/${actor._id}`);
-            })
-            .then(
-                () => { throw new Error('Unexpected successful response'); },
-                err => {
-                    assert.equal(err.status, 404);
-                }
-            );
-    });
+    //         .then(res => {
+    //             actor = res.body;
+    //             return request.delete(`/api/actors/${actor._id}`);
+    //         })
+    //         .then(res => {
+    //             assert.deepEqual(res.body, { removed: true});
+    //             return request.get(`/api/actors/${actor._id}`);
+    //         })
+    //         .then(
+    //             () => { throw new Error('Unexpected successful response'); },
+    //             err => {
+    //                 assert.equal(err.status, 404);
+    //             }
+    //         );
+    // });
 
 });
