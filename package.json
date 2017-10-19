@@ -2,7 +2,7 @@
   "name": "three-resource-express-app",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "directories": {
     "lib": "lib",
     "test": "test"
@@ -30,13 +30,13 @@
     "chai-http": "^3.0.0",
     "eslint": "^4.8.0",
     "mocha": "^4.0.0",
+    "morgan": "^1.9.0",
     "nodemon": "^1.12.1"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "mongoose": "^4.12.3",
-    "morgan": "^1.9.0"
+    "mongoose": "^4.12.3"
   },
   "bugs": {
     "url": "https://github.com/ChristinaMills/three-resource-express-app/issues"
