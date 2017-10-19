@@ -47,7 +47,7 @@ describe('REST API 3 resource', () => {
         
     });
 
-    it('deletes an actor by id', () => {
+    it.skip('deletes an actor by id', () => {
         let actor = null;
         return request.post('/api/actors')
             .send(brad)
